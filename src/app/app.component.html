@@ -1,0 +1,33 @@
+<button (click)="initNewUsuario()">Crear Nuevo Usuario</button>
+
+<table>
+  <thead>
+    <th>Id</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Cedula</th>
+    <th>UserName</th>
+    <th>Estado</th>
+    <th>Fecha Creación</th>
+    <th>Fecha Modificación</th>
+    <th>Fecha Eliminación</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let usuario of usuarios">
+      <td>{{ usuario.id }}</td>
+      <td>{{ usuario.nombre }}</td>
+      <td>{{ usuario.apellido }}</td>
+      <td>{{ usuario.cedula }}</td>
+      <td>{{ usuario.username }}</td>
+      <td>{{ usuario.estado }}</td>
+
+      <td>{{ usuario.fechaCreacion }}</td>
+      <td>{{ usuario.fechaModicicacion }}</td>
+      <td>{{ usuario.fechaEliminacion }}</td>
+      <td><button (click)="editUsuario(usuario)">Editar</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<app-edit-usuario [usuario]="usuarioToEdit"></app-edit-usuario>
