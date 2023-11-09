@@ -25,6 +25,10 @@ export class AppComponent {
     );
   }
 
+  updateUsuariosList(usuarios: Usuario[]){
+    this.usuarios = usuarios;
+  }
+
   initNewUsuario() {
     this.usuarioToEdit = new Usuario();
   }

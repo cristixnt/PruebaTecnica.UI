@@ -5,11 +5,11 @@
     <input [(ngModel)]="usuario.nombre" placeholder="Nombre" />
   </div>
   <div>
-    Nombre:
+    Apellido:
     <input [(ngModel)]="usuario.apellido" placeholder="Apellido" />
   </div>
   <div>
-    Nombre:
+    Cedula:
     <input [(ngModel)]="usuario.cedula" placeholder="Cedula" type="number" />
   </div>
   <div>
@@ -18,5 +18,5 @@
   </div>
   <button (click)="updateUsuario(usuario)" *ngIf="usuario.id">Guardar</button>
   <button (click)="deleteUsuario(usuario)" *ngIf="usuario.id">Eliminar</button>
-  <button (click)="createUsuario(usuario)" *ngIf="usuario.id">Crear</button>
+  <button (click)="createUsuario(usuario)" *ngIf="!usuario.id">Crear</button>
 </div>

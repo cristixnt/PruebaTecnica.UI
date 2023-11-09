@@ -30,4 +30,7 @@
   </tbody>
 </table>
 
-<app-edit-usuario [usuario]="usuarioToEdit"></app-edit-usuario>
+<app-edit-usuario
+  [usuario]="usuarioToEdit"
+  (usuariosUpdated)="updateUsuariosList($event)"
+></app-edit-usuario>
