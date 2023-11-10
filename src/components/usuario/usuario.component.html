@@ -1,0 +1,46 @@
+<h2>Gestión Usuarios</h2>
+<br />
+<button class="btn btn-primary" (click)="initNewUsuario()">
+  Crear Nuevo Usuario
+</button>
+<br />
+<br />
+<table class="table table-bordered table-hover">
+  <thead>
+    <th scope="col">Id</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Apellido</th>
+    <th scope="col">Cedula</th>
+    <th scope="col">UserName</th>
+    <th scope="col">Estado</th>
+    <th scope="col">Fecha Creación</th>
+    <th scope="col">Fecha Modificación</th>
+    <th scope="col">Fecha Eliminación</th>
+    <th scope="col"></th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let usuario of usuarios">
+      <td scope="row">{{ usuario.id }}</td>
+      <td>{{ usuario.nombre }}</td>
+      <td>{{ usuario.apellido }}</td>
+      <td>{{ usuario.cedula }}</td>
+      <td>{{ usuario.username }}</td>
+      <td>{{ usuario.estado }}</td>
+
+      <td>{{ usuario.fechaCreacion }}</td>
+      <td>{{ usuario.fechaModicicacion }}</td>
+      <td>{{ usuario.fechaEliminacion }}</td>
+      <td>
+        <button class="btn btn-warning" (click)="editUsuario(usuario)">
+          Editar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<app-edit-usuario
+  [usuario]="usuarioToEdit"
+  (usuariosUpdated)="updateUsuariosList($event)"
+></app-edit-usuario>
+<br />

@@ -1,22 +1,60 @@
-<div *ngIf="usuario">
+<div *ngIf="usuario" class="center">
   <h2>{{ usuario.nombre }}</h2>
   <div>
     Nombre:
-    <input [(ngModel)]="usuario.nombre" placeholder="Nombre" />
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="usuario.nombre"
+      placeholder="Nombre"
+    />
   </div>
   <div>
     Apellido:
-    <input [(ngModel)]="usuario.apellido" placeholder="Apellido" />
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="usuario.apellido"
+      placeholder="Apellido"
+    />
   </div>
   <div>
     Cedula:
-    <input [(ngModel)]="usuario.cedula" placeholder="Cedula" type="number" />
+    <input
+      class="form-control"
+      [(ngModel)]="usuario.cedula"
+      placeholder="Cedula"
+      type="number"
+    />
   </div>
   <div>
     UserName:
-    <input [(ngModel)]="usuario.username" placeholder="UserName" />
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="usuario.username"
+      placeholder="UserName"
+    />
   </div>
-  <button (click)="updateUsuario(usuario)" *ngIf="usuario.id">Guardar</button>
-  <button (click)="deleteUsuario(usuario)" *ngIf="usuario.id">Eliminar</button>
-  <button (click)="createUsuario(usuario)" *ngIf="!usuario.id">Crear</button>
+  <button
+    class="btn btn-primary"
+    (click)="updateUsuario(usuario)"
+    *ngIf="usuario.id"
+  >
+    Guardar
+  </button>
+  <button
+    class="btn btn-danger"
+    (click)="deleteUsuario(usuario)"
+    *ngIf="usuario.id"
+  >
+    Eliminar
+  </button>
+  <button
+    class="btn btn-success"
+    (click)="createUsuario(usuario)"
+    *ngIf="!usuario.id"
+  >
+    Crear
+  </button>
 </div>

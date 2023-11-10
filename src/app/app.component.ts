@@ -1,39 +1,47 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { Usuario } from '../models/usuario';
-import { UsuarioService } from '../services/usuario.service';
 import { HttpClientModule } from '@angular/common/http';
-import { EditUsuarioComponent } from '../components/edit-usuario/edit-usuario.component';
+import { LoginComponent } from '../components/login/login.component';
+import { UsuarioComponent } from '../components/usuario/usuario.component';
+import { LoginService } from '../services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [CommonModule, RouterOutlet, HttpClientModule, EditUsuarioComponent],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    HttpClientModule,
+    UsuarioComponent,
+    LoginComponent,
+  ],
 })
 export class AppComponent {
   title = 'PruebaTecnica.UI';
-  usuarios: Usuario[] = [];
-  usuarioToEdit?: Usuario;
-  constructor(private UsuarioService: UsuarioService) {}
+  token?: any = null;
+  logged: Boolean = false;
+
+  constructor(private loginService: LoginService, public router: Router) {}
 
   ngOnInit(): void {
-    this.UsuarioService.getUsuarios().subscribe(
-      (result: Usuario[]) => (this.usuarios = result)
-    );
+    this.updateToken();
   }
 
-  updateUsuariosList(usuarios: Usuario[]){
-    this.usuarios = usuarios;
+  updateToken() {
+    this.token = this.loginService.getToken();
+    if (this.token == null) {
+      this.logged = false;
+    } else {
+      this.logged = true;
+    }
   }
 
-  initNewUsuario() {
-    this.usuarioToEdit = new Usuario();
-  }
-
-  editUsuario(usuario: Usuario) {
-    this.usuarioToEdit = usuario;
+  cerrarSesion() {
+    this.token = this.loginService.logOut();
+    this.updateToken();
   }
 }
