@@ -18,6 +18,11 @@ export class UsuarioService {
     );
   }
 
+  public getUsuariosFilter(userFilter: any): Observable<Usuario[]> {
+    return this.http.post<Usuario[]>(
+      `${environment.apiUrl}/${this.url}/GetUsuariosByFilter`,  userFilter);
+  }
+
   public updateUsuario(usuario: Usuario): Observable<Usuario[]> {
     return this.http.put<Usuario[]>(
       `${environment.apiUrl}/${this.url}/UpdateUsuario`, usuario

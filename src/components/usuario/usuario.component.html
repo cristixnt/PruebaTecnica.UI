@@ -1,5 +1,41 @@
 <h2>Gestión Usuarios</h2>
 <br />
+<section>
+  Filtro:
+  <div class="div-filtro">
+    <div style="padding-right: 15px">
+      <input
+        type="number"
+        name="cedulaFiltro"
+        id="cedulaFiltro"
+        [(ngModel)]="cedulaFiltro"
+        class="form-control"
+        placeholder="Cedula"
+      />
+    </div>
+    <br />
+    <div>
+      <input
+        type="text"
+        name="nombreFiltro"
+        id="nombreFiltro"
+        [(ngModel)]="nombreFiltro"
+        class="form-control"
+        placeholder="Nombre completo"
+      />
+    </div>
+  </div>
+  <br />
+  <div class="button-filter">
+    <button style="margin-right: 15px" class="btn btn-primary" (click)="filtrarUsuarios()">
+      Filtrar Usuarios
+    </button>
+    <button class="btn btn-light" (click)="borrarFiltro()">
+      Borrar Filtro
+    </button>
+  </div>
+</section>
+<br />
 <button class="btn btn-primary" (click)="initNewUsuario()">
   Crear Nuevo Usuario
 </button>
@@ -8,28 +44,21 @@
 <table class="table table-bordered table-hover">
   <thead>
     <th scope="col">Id</th>
-    <th scope="col">Nombre</th>
-    <th scope="col">Apellido</th>
+    <th scope="col">Nombre Completo</th>
     <th scope="col">Cedula</th>
-    <th scope="col">UserName</th>
+    <th scope="col">Alias</th>
     <th scope="col">Estado</th>
     <th scope="col">Fecha Creación</th>
-    <th scope="col">Fecha Modificación</th>
-    <th scope="col">Fecha Eliminación</th>
     <th scope="col"></th>
   </thead>
   <tbody>
     <tr *ngFor="let usuario of usuarios">
       <td scope="row">{{ usuario.id }}</td>
-      <td>{{ usuario.nombre }}</td>
-      <td>{{ usuario.apellido }}</td>
+      <td>{{ usuario.nombre + " " + usuario.apellido }}</td>
       <td>{{ usuario.cedula }}</td>
       <td>{{ usuario.username }}</td>
-      <td>{{ usuario.estado }}</td>
-
-      <td>{{ usuario.fechaCreacion }}</td>
-      <td>{{ usuario.fechaModicicacion }}</td>
-      <td>{{ usuario.fechaEliminacion }}</td>
+      <td>{{ usuario.estado ? "Activo" : "Inactivo" }}</td>
+      <td>{{ usuario.fechaCreacion | date : "YYYY-MM-dd" }}</td>
       <td>
         <button class="btn btn-warning" (click)="editUsuario(usuario)">
           Editar
@@ -40,6 +69,8 @@
 </table>
 
 <app-edit-usuario
+  *ngIf="mostrarForm"
+  (onCallParent)="calcelarEdit()"
   [usuario]="usuarioToEdit"
   (usuariosUpdated)="updateUsuariosList($event)"
 ></app-edit-usuario>

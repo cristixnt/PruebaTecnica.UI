@@ -1,3 +1,5 @@
+import { ignoreElements } from 'rxjs';
+
 export class Usuario {
   id?: number;
   nombre?: string = '';
@@ -6,6 +8,7 @@ export class Usuario {
   username: string = '';
   estado?: boolean;
   fechaCreacion?: Date;
-  fechaModicicacion?: Date;
+  fechaModificacion?: Date;
   fechaEliminacion?: Date;
+    
 }
